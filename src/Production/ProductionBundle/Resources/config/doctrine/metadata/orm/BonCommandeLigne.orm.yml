@@ -1,0 +1,46 @@
+BonCommandeLigne:
+    type: entity
+    table: bon_commande_ligne
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        numBc:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: num_bc
+        codeProduit:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: code_produit
+        montantHt:
+            type: decimal
+            nullable: true
+            precision: 18
+            scale: 2
+            comment: ''
+            column: montant_ht
+        cloturee:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        affecter:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

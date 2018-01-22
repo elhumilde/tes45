@@ -1,0 +1,41 @@
+boncommandeligne:
+    path:     /
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:index" }
+boncommandeligne_affecter:
+    path:     /affecter
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:affecter" }
+
+boncommandeligne_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:show" }
+
+boncommandeligne_new:
+    path:     /new
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:new" }
+
+boncommandeligne_create:
+    path:     /create
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:create" }
+    methods:  POST
+
+boncommandeligne_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:edit" }
+
+boncommandeligne_update:
+    path:     /{id}/update
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:update" }
+    methods:  [POST, PUT]
+
+boncommandeligne_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:delete" }
+    methods:  [POST, DELETE]
+
+boncommandeligne_production:
+    path:     /production
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:production" }
+
+boncommandeligne_recherche:
+    path:     /recherche
+    defaults: { _controller: "ProductionBundle:BonCommandeLigne:recherche" }

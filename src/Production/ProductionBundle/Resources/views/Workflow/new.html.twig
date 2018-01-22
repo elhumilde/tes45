@@ -1,0 +1,100 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <div id="page-title">
+        <h2>Création des Workflows</h2>
+
+
+    </div>
+<div class="row">
+    <form class="form-horizontal col-md-8 test" action="{{ path('workflow_create') }}" method="post" {{ form_enctype(form) }}>
+
+
+        <div class="form-group ">
+            <div class="col-md-offset-6 col-md-6">
+                {{ form_row(form.titre, { 'label': 'Titre'}) }}
+            </div>
+        </div>
+        <div class="form-group ">
+            <div class="col-md-offset-6 col-md-6">
+                {{ form_row(form.description, { 'label': 'Description'}) }}
+            </div>
+        </div>
+    {{ form_widget(form._token) }}
+
+
+    <div class="form-group">
+        <div class="col-md-offset-6 col-md-6">
+            <button type="submit" name="subvalider" class="btn btn-primary"><span class="fui-new"></span> Ajouter</button>
+        </div>
+    </div>
+
+
+    </form>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body">
+                <h3 class="title-hero">
+                    Liste des Workflows
+                </h3>
+                <div class="example-box-wrapper">
+                    <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Code WF</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Etapes</th>
+
+                        </tr>
+                        </thead>
+
+                        <tfoot>
+                        <tr>
+                            <th>Code WF</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Etapes</th>
+
+                        </tr>
+                        </tfoot>
+
+                        <tbody>
+                        {% for entity in entities %}
+                        <tr>
+
+                            <td>{{ entity.id }}</td>
+                            <td>{{ entity.titre }}</td>
+                            <td>{{ entity.description }}</td>
+                            <td><a class="btn btn-link" href="{{ path('workflow_show', { 'id': entity.id }) }}">Etapes</a></td>
+
+                        </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable-bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable-responsive.js') }}"></script>
+
+    <script type="text/javascript">
+        /* Datatables responsive */
+        $(document).ready(function() {
+            $('#datatable-responsive').DataTable( {
+                responsive: true
+            } );
+        } );
+
+        $(document).ready(function() {
+            $('.dataTables_filter input').attr("placeholder", "Search...");
+        });
+    </script>
+{% endblock %}

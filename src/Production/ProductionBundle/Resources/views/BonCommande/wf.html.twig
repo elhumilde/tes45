@@ -1,0 +1,511 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <script type="text/javascript" src="{{ asset('assets/widgets/tooltip/tooltip.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/popover/popover.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/xeditable/xeditable.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/xeditable/xeditable-demo.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/daterangepicker/moment.js')}}"></script>
+
+    <script type="text/javascript" src="{{ asset('assets/widgets/datepicker/datepicker.js')}}"></script>
+
+    <script type="text/javascript" src="{{ asset('assets/widgets/ckeditor/config.js?t=E8PB')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/widgets/ckeditor/skins/bootstrapck/editor.css?t=E8PB')}}">
+    <script type="text/javascript" src="{{ asset('assets/widgets/ckeditor/lang/en.js?t=E8PB')}}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/ckeditor/styles.js?t=E8PB')}}"></script>
+
+
+    <script type="text/javascript">
+        /* Datepicker bootstrap */
+
+        $(function() { "use strict";
+            $('.bootstrap-datepicker').bsdatepicker({
+                format: 'dd-mm-yyyy'
+            });
+        });
+
+    </script>
+    <div id="page-title">
+    <h2 class="text-success">Welcome call </h2>
+    </div>
+
+    <div class="row">
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Numéro BC </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entities.numBc }}" readonly></div>
+        </div>
+
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Client </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entities.customer.client }}" readonly></div>
+        </div>
+
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Vendeur</label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entities.vendeur.nom }} {{ entities.vendeur.prenom }} " readonly></div>
+        </div>
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Date arrivée bon commande</label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{% if entities.dateBc %}{{ entities.dateBc|date('d-m-Y') }}{% endif %} " readonly></div>
+        </div>
+        <br/>
+        <br/>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+<div class="panel">
+<div class="panel-body">
+    <h3 class="title-hero">
+        Bon Commande
+    </h3>
+    <div class="example-box-wrapper">
+        {% for entit in entities.ligne %}
+    <div class="form-group col-sm-6">
+
+
+        <label class="col-sm-6 control-label">{{ entit.produit.titre }}</label>
+        <div class="col-sm-6">
+            <div class="form-group col-xs-12">
+                      <label class="btn btn-default"><input type="radio" onclick="ChangeValider({{ entit.id }})" name="fays{{ entit.id }}" value="1" style="vertical-align: top;" {% if entit.affecter==2 %} checked{% endif %}>Valider</label>
+                      <label class="btn btn-default"><input type="radio" onclick="ChangeNON({{ entit.id }})" name="fays{{ entit.id }}" value="0" style="vertical-align: top;" {% if entit.affecter==1 %} checked{% endif %}>NON</label>
+            </div>
+        </div>
+
+
+    </div>
+
+        {% endfor %}
+        <form class="form-horizontal bordered-row" role="form">
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Date prévu réunion client</label>
+                <div class="col-sm-2">
+                    <div class="input-prepend input-group">
+                                    <span class="add-on input-group-addon">
+                                        <i class="glyph-icon icon-calendar"></i>
+                                    </span>
+                        <input type="text" id="date_reunion" class="bootstrap-datepicker form-control" value="{% if entities.welcomes %}{% if entities.welcomes.dateReunion %}{{ entities.welcomes.dateReunion|date('d-m-Y') }} {% endif %}{% endif %}" data-date-format="dd-mm-yyyy">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form class="form-horizontal bordered-row" role="form">
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Date prévu mise enligne</label>
+                <div class="col-sm-2">
+                    <div class="input-prepend input-group">
+                                    <span class="add-on input-group-addon">
+                                        <i class="glyph-icon icon-calendar"></i>
+                                    </span>
+                        <input  type="text" id="date_enligne" class="bootstrap-datepicker form-control" value=" {% if entities.welcomes %}{% if entities.welcomes.dateMise %} {{ entities.welcomes.dateMise|date('d-m-Y') }}{% endif %} {% endif %}" data-date-format="dd-mm-yyyy">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class=" col-md-6">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Commentaire</label>
+                    <div class="col-sm-6">
+                        <textarea id="one_text" name="" rows="5" cols="50" class="form-control textarea-counter"> {% if entities.welcomes %}{% if entities.welcomes.commentaire %} {{ entities.welcomes.commentaire }}{% endif %}{% endif %} </textarea>
+                        <div class="character-remaining clear input-description">125 characters left</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="form-group col-sm-6">
+
+
+            <label class="col-sm-6 control-label">Bon Commande</label>
+            <div class="col-sm-6">
+                <div class="form-group col-xs-12">
+                    <label class="btn btn-default"><input type="radio" onclick="Valider()" name="validation" value="1" style="vertical-align: top;" {% if entities.valider==2 %} checked{% endif %}>Valider</label>
+                    <label class="btn btn-default"><input type="radio" onclick="NON()"   name="validation"  value="0" style="vertical-align: top;" {% if entities.valider==1 %} checked{% endif %}>NON</label>
+                </div>
+            </div>
+
+
+        </div>
+
+         </div>
+
+    </div>
+
+
+ </div>
+</div>
+{#
+    {% for entit in entities.ligne %}
+        <li>{{ entit.produit.titre }} </li>
+    {% endfor %}
+#}
+
+    <script type="text/javascript" >
+
+        function Valider(){
+
+
+
+            var data_send = {usern: 'fayssal', 'idbc': {{ entities.id }} };
+
+            //Ici on peut ajouter un loader...
+            $.ajax({
+
+                url: '{{ path('commande_valider') }}',
+                type: 'POST',
+                data: data_send,
+
+                statusCode: {
+                    //traitement en cas de succès
+                    200: function (response) {
+
+                        var successMessage = response.nom;
+
+
+                        // alert(successMessage+''+successM+''+successF+' c bien passée');
+                        //on vide les champs formulaires ou on le supprime ou ...
+
+                        //on retire le loader...
+                        //on prévient l'utilistateur du bonne envoi...
+
+                    },
+                    //traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+                    412: function (response) {
+                        var errorsForm = response.responseJSON.formErrors;
+                        //on affiche les erreurs...
+                    }
+                }
+            });
+
+
+
+
+        }
+
+        function NON(){
+
+            var data_send = {usern: 'fayssal', 'idbc': {{ entities.id }}};
+
+            //Ici on peut ajouter un loader...
+            $.ajax({
+
+                url: '{{ path('commande_non') }}',
+                type: 'POST',
+                data: data_send,
+
+                statusCode: {
+                    //traitement en cas de succès
+                    200: function (response) {
+
+                        var successMessage = response.nom;
+
+
+                        // alert(successMessage+''+successM+''+successF+' c bien passée');
+                        //on vide les champs formulaires ou on le supprime ou ...
+
+                        //on retire le loader...
+                        //on prévient l'utilistateur du bonne envoi...
+
+                    },
+                    //traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+                    412: function (response) {
+                        var errorsForm = response.responseJSON.formErrors;
+                        //on affiche les erreurs...
+                    }
+                }
+            });
+
+
+        }
+        function ChangeValider($id){
+
+
+
+            var data_send = {usern: 'fayssal', 'idbc': {{ entities.id }} , text: $id};
+
+            //Ici on peut ajouter un loader...
+            $.ajax({
+
+                url: '{{ path('commande_form_valider') }}',
+                type: 'POST',
+                data: data_send,
+
+                statusCode: {
+                    //traitement en cas de succès
+                    200: function (response) {
+
+                        var successMessage = response.nom;
+
+
+                        // alert(successMessage+''+successM+''+successF+' c bien passée');
+                        //on vide les champs formulaires ou on le supprime ou ...
+
+                        //on retire le loader...
+                        //on prévient l'utilistateur du bonne envoi...
+
+                    },
+                    //traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+                    412: function (response) {
+                        var errorsForm = response.responseJSON.formErrors;
+                        //on affiche les erreurs...
+                    }
+                }
+            });
+
+
+
+
+        }
+
+        function ChangeNON($id){
+
+            var data_send = {usern: 'fayssal', 'idbc': {{ entities.id }} , text: $id};
+
+            //Ici on peut ajouter un loader...
+            $.ajax({
+
+                url: '{{ path('commande_form_non') }}',
+                type: 'POST',
+                data: data_send,
+
+                statusCode: {
+                    //traitement en cas de succès
+                    200: function (response) {
+
+                        var successMessage = response.nom;
+
+
+                        // alert(successMessage+''+successM+''+successF+' c bien passée');
+                        //on vide les champs formulaires ou on le supprime ou ...
+
+                        //on retire le loader...
+                        //on prévient l'utilistateur du bonne envoi...
+
+                    },
+                    //traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+                    412: function (response) {
+                        var errorsForm = response.responseJSON.formErrors;
+                        //on affiche les erreurs...
+                    }
+                }
+            });
+
+
+        }
+
+
+    </script>
+
+    <script>
+
+    $(document).ready(function() {
+
+        $('#date_reunion').datepicker()
+                .on("change", function (e) {
+
+
+                    var $vb = e.target.value;
+
+                    var data_send = {usern: 'fayssal', 'idbc': {{ entities.id }} , text: $vb};
+
+                    //Ici on peut ajouter un loader...
+                    $.ajax({
+
+                        url: '{{ path('commande_form_reunion') }}',
+                        type: 'POST',
+                        data: data_send,
+
+                        statusCode: {
+                            //traitement en cas de succès
+                            200: function (response) {
+
+                                var successMessage = response.nom;
+
+
+                                // alert(successMessage+''+successM+''+successF+' c bien passée');
+                                //on vide les champs formulaires ou on le supprime ou ...
+
+                                //on retire le loader...
+                                //on prévient l'utilistateur du bonne envoi...
+
+                            },
+                            //traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+                            412: function (response) {
+                                var errorsForm = response.responseJSON.formErrors;
+                                //on affiche les erreurs...
+                            }
+                        }
+                    });
+
+                });
+
+        $('#date_enligne').datepicker()
+                .on("change", function (e) {
+
+
+                    var $vb = e.target.value;
+
+                    var data_send = {usern: 'fayssal', 'idbc': {{ entities.id }} , text: $vb};
+
+                    //Ici on peut ajouter un loader...
+                    //Ici on peut ajouter un loader...
+                    $.ajax({
+
+                        url: '{{ path('commande_form_enligne') }}',
+                        type: 'POST',
+                        data: data_send,
+
+                        statusCode: {
+                            //traitement en cas de succès
+                            200: function (response) {
+
+                                var successMessage = response.nom;
+
+
+                                // alert(successMessage+''+successM+''+successF+' c bien passée');
+                                //on vide les champs formulaires ou on le supprime ou ...
+
+                                //on retire le loader...
+                                //on prévient l'utilistateur du bonne envoi...
+
+                            },
+                            //traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+                            412: function (response) {
+                                var errorsForm = response.responseJSON.formErrors;
+                                //on affiche les erreurs...
+                            }
+                        }
+                    });
+
+
+                });
+
+
+
+
+        /*      $("#date_reunion").blur(function (event) {
+
+
+                  var $vb = $("#date_reunion").val();
+
+
+
+                  var data_send = {usern: 'fayssal', 'idbc': {{ entities.id }} , text: $vb};
+
+            //Ici on peut ajouter un loader...
+            $.ajax({
+
+                url: '{{ path('commande_form_reunion') }}',
+                type: 'POST',
+                data: data_send,
+
+                statusCode: {
+                    //traitement en cas de succès
+                    200: function (response) {
+
+                        var successMessage = response.nom;
+
+
+                        // alert(successMessage+''+successM+''+successF+' c bien passée');
+                        //on vide les champs formulaires ou on le supprime ou ...
+
+                        //on retire le loader...
+                        //on prévient l'utilistateur du bonne envoi...
+
+                    },
+                    //traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+                    412: function (response) {
+                        var errorsForm = response.responseJSON.formErrors;
+                        //on affiche les erreurs...
+                    }
+                }
+            });
+
+
+
+        });
+*/
+
+/*        $("#date_enligne").blur(function (event) {
+
+
+            var $vb = $("#date_enligne").val();
+
+
+
+            var data_send = {usern: 'fayssal', 'idbc': {{ entities.id }} , text: $vb};
+
+            //Ici on peut ajouter un loader...
+            $.ajax({
+
+                url: '{{ path('commande_form_enligne') }}',
+                type: 'POST',
+                data: data_send,
+
+                statusCode: {
+                    //traitement en cas de succès
+                    200: function (response) {
+
+                        var successMessage = response.nom;
+
+
+                        // alert(successMessage+''+successM+''+successF+' c bien passée');
+                        //on vide les champs formulaires ou on le supprime ou ...
+
+                        //on retire le loader...
+                        //on prévient l'utilistateur du bonne envoi...
+
+                    },
+                    //traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+                    412: function (response) {
+                        var errorsForm = response.responseJSON.formErrors;
+                        //on affiche les erreurs...
+                    }
+                }
+            });
+
+
+
+        });*/
+
+
+        $("#one_text").blur(function (event) {
+            var $vb = $("#one_text").val();
+
+
+
+            var data_send = {usern: 'fayssal', 'idbc': {{ entities.id }} , text: $vb};
+
+            //Ici on peut ajouter un loader...
+            $.ajax({
+
+                url: '{{ path('commande_form_text') }}',
+                type: 'POST',
+                data: data_send,
+
+                statusCode: {
+                    //traitement en cas de succès
+                    200: function (response) {
+
+                        var successMessage = response.nom;
+
+
+                        // alert(successMessage+''+successM+''+successF+' c bien passée');
+                        //on vide les champs formulaires ou on le supprime ou ...
+
+                        //on retire le loader...
+                        //on prévient l'utilistateur du bonne envoi...
+
+                    },
+                    //traitement en cas d'erreur (on peut aussi traiter le cas erreur 500...)
+                    412: function (response) {
+                        var errorsForm = response.responseJSON.formErrors;
+                        //on affiche les erreurs...
+                    }
+                }
+            });
+
+
+        });
+
+    });
+
+            </script>
+{% endblock %}

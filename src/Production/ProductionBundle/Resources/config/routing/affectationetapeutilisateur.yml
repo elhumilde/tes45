@@ -1,0 +1,50 @@
+affectation:
+    path:     /
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:index" }
+
+affectation_show:
+    path:     /{id}/show/{uid}
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:show" }
+
+affectation_new:
+    path:     /new
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:new" }
+
+affectation_create:
+    path:     /create
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:create" }
+    methods:  POST
+
+affectation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:edit" }
+
+affectation_update:
+    path:     /{id}/update
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:update" }
+    methods:  [POST, PUT]
+
+affectation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:delete" }
+    methods:  [POST, DELETE]
+
+affectation_production:
+    path:     /production
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:production" }
+
+affectation_form:
+    path:     /form
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:form" }
+
+affectation_form_text:
+    path:     /text
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:text" }
+
+affectation_form_fin:
+    path:     /fin
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:fin" }
+
+affectation_detaill:
+    path:     /detaill
+    defaults: { _controller: "ProductionBundle:AffectationEtapeUtilisateur:detaill" }

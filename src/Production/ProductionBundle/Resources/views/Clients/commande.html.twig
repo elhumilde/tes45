@@ -1,0 +1,128 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <div id="page-title">
+        <h2>Liste de Bon Commandes </h2>
+
+
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body">
+                <h3 class="title-hero">
+                    Liste Des Etapes Workflow
+                </h3>
+                <div class="example-box-wrapper">
+                    <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+
+                            <th>Numéro bc</th>
+                            <th>Codefirme</th>
+                            <th>Date bc</th>
+                            <th>Date prevue reunion client</th>
+                            <th>Code vendeur</th>
+                            <th>Vendeur</th>
+                            <th>Montant ht</th>
+                            <th>Montant ttc</th>
+                            <th>Code client</th>
+                            <th>Etat d'affectation </th>
+                            <th>Cloturee</th>
+                            <th>Liste des produits</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+
+                            <th>Numéro bc</th>
+                            <th>Codefirme</th>
+                            <th>Date bc</th>
+                            <th>Date prevue reunion client</th>
+                            <th>Code vendeur</th>
+                            <th>Code vendeur</th>
+                            <th>Montant ht</th>
+                            <th>Montant ttc</th>
+                            <th>Code client</th>
+                            <th>Etat d'affectation </th>
+                            <th>Cloturee</th>
+                            <th>Liste des produits</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for entity in entities %}
+                            <tr>
+
+                                <td>{{ entity.numBc }}</td>
+                                <td>{{ entity.codeFirme }}</td>
+                                <td class="text-success">{% if entity.dateBc %}{{ entity.dateBc|date('d-m-Y') }}{% endif %}</td>
+                                <td class="text-success">{% if entity.datePrevueReunionClient %}{{ entity.datePrevueReunionClient|date('d-m-Y') }}{% endif %}</td>
+                                <td>{{ entity.vendeur.code }}</td>
+                                <td>{{ entity.vendeur.nom }} {{ entity.vendeur.prenom }} </td>
+                                <td class="text-warning">{{ entity.montantHt }}  </td>
+                                <td class="text-warning">{{ entity.montantTtc }} </td>
+                                <td class="text-danger">{{ entity.customer.client }}   </td>
+                                <td >
+                                    {% set totalPrice =0 %}
+                                    {% for entit in entity.ligne %}
+                                        {% set totalPrice = totalPrice + entit.produit.idWorkflow|count(entit.id) %}
+
+                                    {% endfor %}
+                                    <div class="row demo-margin">
+                                        <div class="col-md-3">
+                                            <div class="text-center font-gray-dark pad5B text-transform-upr font-size-11">Affectation</div>
+                                            <div class="chart-alt-2 easyPieChart" data-percent="{{ totalPrice /entity.ligne|length}}" style="width: 50px; height: 50px; line-height: 50px;"><span>{{ totalPrice /entity.ligne|length}}</span>%<canvas width="50" height="50"></canvas></div>
+                                        </div>
+                                    </div>
+
+
+                                </td>
+                                <td >
+                                    {% set totalPrices =0 %}
+                                    {% for entit in entity.ligne %}
+                                        {% set totalPrices = totalPrices + entit.produit.idWorkflow|countFin(entit.id) %}
+
+                                    {% endfor %}
+                                    <div class="row demo-margin">
+                                        <div class="col-md-3">
+                                            <div class="text-center font-gray-dark pad5B text-transform-upr font-size-11">Cloture</div>
+                                            <div class="chart-alt-2 easyPieChart" data-percent="{{ totalPrices /entity.ligne|length}}" style="width: 50px; height: 50px; line-height: 50px;"><span>{{ totalPrices /entity.ligne|length}}</span>%<canvas width="50" height="50"></canvas></div>
+                                        </div>
+                                    </div>
+
+
+                                </td>
+                                <td><a class="btn btn-link" href="{{ path('commande_produit', { 'id': entity.id }) }}">Liste des produits</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable-bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable-responsive.js') }}"></script>
+
+    <script type="text/javascript">
+
+        /* Datatables responsive */
+
+        $(document).ready(function() {
+            $('#datatable-responsive').DataTable( {
+                responsive: true
+            } );
+        } );
+
+        $(document).ready(function() {
+            $('.dataTables_filter input').attr("placeholder", "Search...");
+        });
+
+    </script>
+{% endblock %}
+
+
+

@@ -1,0 +1,34 @@
+workflowexecution:
+    path:     /
+    defaults: { _controller: "ProductionBundle:WorkflowExecution:index" }
+
+workflowexecution_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProductionBundle:WorkflowExecution:show" }
+
+workflowexecution_new:
+    path:     /new
+    defaults: { _controller: "ProductionBundle:WorkflowExecution:new" }
+
+workflowexecution_create:
+    path:     /create
+    defaults: { _controller: "ProductionBundle:WorkflowExecution:create" }
+    methods:  POST
+
+workflowexecution_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProductionBundle:WorkflowExecution:edit" }
+
+workflowexecution_update:
+    path:     /{id}/update
+    defaults: { _controller: "ProductionBundle:WorkflowExecution:update" }
+    methods:  [POST, PUT]
+
+workflowexecution_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProductionBundle:WorkflowExecution:delete" }
+    methods:  [POST, DELETE]
+
+workflowexecution_etapeu:
+    path:     /etapeu
+    defaults: { _controller: "ProductionBundle:WorkflowExecution:etapeu" }

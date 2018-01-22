@@ -1,0 +1,258 @@
+ListeDistribution:
+    type: entity
+    table: liste_distribution
+    id:
+        idDistribution:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: id_distribution
+            generator:
+                strategy: IDENTITY
+    fields:
+        codeFirme:
+            type: string
+            nullable: false
+            length: 9
+            fixed: false
+            comment: ''
+            default: ''
+            column: code_firme
+        rsAbrege:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: rs_abrege
+        rsComplete:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: rs_complete
+        adresse:
+            type: string
+            nullable: true
+            length: 300
+            fixed: false
+            comment: ''
+        ville:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        dir1:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: Dir1
+        fct1:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: Fct1
+        dir5:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: Dir5
+        tel1:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: Tel1
+        tel2:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: Tel2
+        fax:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: Fax
+        eff:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        ca:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: CA
+        cFic:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: C_fic
+        clientKn:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: client_KN
+        clientTc:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: client_TC
+        zone:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: Zone
+        activite:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: Activite
+        email1:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: Email1
+        email2:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: Email2
+        affecter:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        traiter:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '1'
+        aff:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '1'
+        siteweb:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        quartier:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        codePostale:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: code_postale
+        nature:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        rc:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+        villeRc:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+            comment: ''
+            column: ville_rc
+        ice:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+        datecreation:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+        taxeProfessionnelle:
+            type: string
+            nullable: true
+            length: 40
+            fixed: false
+            comment: ''
+            column: taxe_professionnelle
+        identifiantFiscale:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: identifiant_fiscale
+        capital:
+            type: string
+            nullable: true
+            length: 40
+            fixed: false
+            comment: ''
+        forme:
+            type: string
+            nullable: true
+            length: 40
+            fixed: false
+            comment: ''
+        x:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        'y':
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

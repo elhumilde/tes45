@@ -1,0 +1,34 @@
+clients:
+    path:     /
+    defaults: { _controller: "ProductionBundle:Clients:index" }
+
+clients_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProductionBundle:Clients:show" }
+
+clients_commande:
+    path:     /{id}/commande
+    defaults: { _controller: "ProductionBundle:Clients:commande" }
+
+clients_new:
+    path:     /new
+    defaults: { _controller: "ProductionBundle:Clients:new" }
+
+clients_create:
+    path:     /create
+    defaults: { _controller: "ProductionBundle:Clients:create" }
+    methods:  POST
+
+clients_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProductionBundle:Clients:edit" }
+
+clients_update:
+    path:     /{id}/update
+    defaults: { _controller: "ProductionBundle:Clients:update" }
+    methods:  [POST, PUT]
+
+clients_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProductionBundle:Clients:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,30 @@
+ExecutionEtapeDetail:
+    type: entity
+    table: execution_etape_detail
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dateDebut:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: date_debut
+        dateFin:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: date_fin
+        idWkExecution:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: id_wk_execution
+    lifecycleCallbacks: {  }

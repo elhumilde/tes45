@@ -1,0 +1,91 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <div id="page-title">
+        <h2>Création des etapes pour chaque workflow</h2>
+
+
+    </div>
+    <div class="row">
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Titre Workflow </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entity.titre }}" readonly></div>
+        </div>
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Description </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entity.description }}" readonly></div>
+        </div>
+
+    </div>
+    <br/>
+    <br/>
+
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body">
+                <h3 class="title-hero">
+                    Liste Des Etapes Workflow
+                </h3>
+                <div class="example-box-wrapper">
+                    <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Code Etapes</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Titre Workflow</th>
+                            <th>Code Etape Precedente</th>
+                            <th>Temps Prevu</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Code Etapes</th>
+                            <th>Titre</th>
+                            <th>Description</th>
+                            <th>Titre Workflow</th>
+                            <th>Code Etape Precedente</th>
+                            <th>Temps Prevu</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for entit in entity.carts %}
+                            <tr>
+                                <td>{{ entit.id }}</td>
+                                <td>{{ entit.titre }}</td>
+                                <td>{{ entit.description }}</td>
+                                <td class="text-success">{{ entit.customer.titre }}</td>
+                                <td class="text-danger">{{ entit.idEtapePrecedente }}</td>
+                                <td class="text-info">{{ entit.tempsPrevu }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable-bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable-responsive.js') }}"></script>
+
+    <script type="text/javascript">
+
+        /* Datatables responsive */
+
+        $(document).ready(function() {
+            $('#datatable-responsive').DataTable( {
+                responsive: true
+            } );
+        } );
+
+        $(document).ready(function() {
+            $('.dataTables_filter input').attr("placeholder", "Search...");
+        });
+
+    </script>
+{% endblock %}
+
+
+

@@ -1,0 +1,30 @@
+workflow:
+    path:     /
+    defaults: { _controller: "ProductionBundle:Workflow:index" }
+
+workflow_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProductionBundle:Workflow:show" }
+
+workflow_new:
+    path:     /new
+    defaults: { _controller: "ProductionBundle:Workflow:new" }
+
+workflow_create:
+    path:     /create
+    defaults: { _controller: "ProductionBundle:Workflow:create" }
+    methods:  POST
+
+workflow_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProductionBundle:Workflow:edit" }
+
+workflow_update:
+    path:     /{id}/update
+    defaults: { _controller: "ProductionBundle:Workflow:update" }
+    methods:  [POST, PUT]
+
+workflow_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProductionBundle:Workflow:delete" }
+    methods:  [POST, DELETE]

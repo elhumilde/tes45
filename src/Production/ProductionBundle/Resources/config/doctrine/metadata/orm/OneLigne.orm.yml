@@ -1,0 +1,25 @@
+OneLigne:
+    type: entity
+    table: one_ligne
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        codeLigne:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: code_ligne
+        dateCreation:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: date_creation
+    lifecycleCallbacks: {  }

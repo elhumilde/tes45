@@ -1,0 +1,69 @@
+BonCommande:
+    type: entity
+    table: bon_commande
+    uniqueConstraints:
+        UNIQ_159D9576E173B1B8:
+            columns:
+                - id_client
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        numBc:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+            column: num_bc
+        codeFirme:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: code_firme
+        dateBc:
+            type: date
+            nullable: true
+            comment: ''
+            column: date_bc
+        datePrevueReunionClient:
+            type: date
+            nullable: true
+            comment: ''
+            column: date_prevue_reunion_client
+        codeVendeur:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: code_vendeur
+        montantHt:
+            type: decimal
+            nullable: true
+            precision: 18
+            scale: 2
+            comment: ''
+            column: montant_ht
+        montantTtc:
+            type: decimal
+            nullable: true
+            precision: 18
+            scale: 2
+            comment: ''
+            column: montant_ttc
+        idClient:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: id_client
+    lifecycleCallbacks: {  }

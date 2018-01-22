@@ -1,0 +1,70 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+<div id="page-title">
+    <h2>Liste des produits affectés</h2>
+</div>
+
+
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body">
+                <h3 class="title-hero">
+                    Liste Des affectations
+                </h3>
+                <div class="example-box-wrapper">
+                    <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+
+                            <th>Utilisateur</th>
+                            <th>Produit</th>
+                            <th>Numéro Bn commande </th>
+                            <th>Priorité </th>
+                            <th>Client </th>
+                            <th>Date Affectation </th>
+                            <th>Date prevue reunion client</th>
+                            <th>Vendeur</th>
+                            <th>Traiter</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Utilisateur</th>
+                                <th>Produit</th>
+                                <th>Numéro Bn commande </th>
+                                <th>Priorité </th>
+                                <th>Client </th>
+                                <th>Date affectation </th>
+                                <th>Date prevue reunion client</th>
+                                <th>Vendeur</th>
+                                <th>Traiter</th>
+                           </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for entity in entities %}
+                            <tr>
+
+                                <td>{{ entity.utilisateur.fullname }}</td>
+                                <td class="text-danger">{{ entity.bncommande.produit.titre }}</td>
+                                <td class="text-warning">{{ entity.bncommande.commande.numBc }}  </td>
+                                <td class="text-warning">  {% if entity.bncommande.commande.ordre==2 %}<sapn class="text-danger" style="text-transform: capitalize;">élevée</sapn>{% endif %} {% if entity.bncommande.commande.ordre==1 %}<sapn class="text-success">Normal</sapn>{% endif %}</td>
+                                <td class="text-success">{{ entity.bncommande.commande.customer.client }}</td>
+                                <td >{% if entity.dateAffectation %}{{ entity.dateAffectation|date('d-m-Y H:i') }}{% endif %}</td>
+                                <td class="text-success">{% if entity.bncommande.commande.datePrevueReunionClient|date('d-m-Y') %}{{ entity.bncommande.commande.datePrevueReunionClient|date('d-m-Y') }}{% endif %}</td>
+
+                                <td class="text-warning">{{ entity.bncommande.commande.vendeur.nom }} {{ entity.bncommande.commande.vendeur.prenom }}</td>
+                                <td><a class="btn btn-link" target="_blank" href="{{ path('affectation_show', { 'id': entity.id,'uid':entity.idLigneBc }) }}">Traiter</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    {% endblock %}

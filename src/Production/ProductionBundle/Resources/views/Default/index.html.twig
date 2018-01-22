@@ -1,0 +1,65 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <div id="page-title">
+        <h2>Accueil</h2>
+        <p>Bienvenu dans le backoffice EDICOM</p>
+
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="{{ path('affectation') }}" title="Example tile shortcut" class="tile-box tile-box-shortcut btn-danger">
+                        <span class="bs-badge badge-absolute">1</span>
+                        <div class="tile-header">
+                            Liste Produit
+                        </div>
+                        <div class="tile-content-wrapper">
+                            <i class="glyph-icon icon-file-photo-o"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" title="Example tile shortcut" class="tile-box tile-box-shortcut btn-success">
+                        <div class="tile-header">
+                            Site connect
+                        </div>
+                        <div class="tile-content-wrapper">
+                            <i class="glyph-icon icon-desktop"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" title="Example tile shortcut" class="tile-box tile-box-shortcut btn-info">
+                        <span class="bs-badge badge-absolute">2</span>
+                        <div class="tile-header">
+                            Modul Logo
+                        </div>
+                        <div class="tile-content-wrapper">
+                            <i class="glyph-icon icon-download"></i>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" title="Example tile shortcut" class="tile-box tile-box-shortcut btn-warning">
+                        <div class="tile-header">
+                            Site vitrine PVI
+                        </div>
+                        <div class="tile-content-wrapper">
+                            <i class="glyph-icon icon-code-fork"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            </div>
+            </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
