@@ -24,7 +24,7 @@ class Workflow
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=50, nullable=true)
+     * @ORM\Column(name="titre", type="string", length=52, nullable=true)
      */
 
     private $titre;
