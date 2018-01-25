@@ -1,0 +1,60 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>BonCommande</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Numbc</th>
+                <td>{{ entity.numBc }}</td>
+            </tr>
+            <tr>
+                <th>Codefirme</th>
+                <td>{{ entity.codeFirme }}</td>
+            </tr>
+            <tr>
+                <th>Datebc</th>
+                <td>{{ entity.dateBc|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Dateprevuereunionclient</th>
+                <td>{{ entity.datePrevueReunionClient|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Codevendeur</th>
+                <td>{{ entity.codeVendeur }}</td>
+            </tr>
+            <tr>
+                <th>Montantht</th>
+                <td>{{ entity.montantHt }}</td>
+            </tr>
+            <tr>
+                <th>Montantttc</th>
+                <td>{{ entity.montantTtc }}</td>
+            </tr>
+            <tr>
+                <th>Idclient</th>
+                <td>{{ entity.idClient }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('commande') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('commande_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

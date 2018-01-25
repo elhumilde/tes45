@@ -1,0 +1,30 @@
+vendeur:
+    path:     /
+    defaults: { _controller: "ProductionBundle:Vendeur:index" }
+
+vendeur_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProductionBundle:Vendeur:show" }
+
+vendeur_new:
+    path:     /new
+    defaults: { _controller: "ProductionBundle:Vendeur:new" }
+
+vendeur_create:
+    path:     /create
+    defaults: { _controller: "ProductionBundle:Vendeur:create" }
+    methods:  POST
+
+vendeur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProductionBundle:Vendeur:edit" }
+
+vendeur_update:
+    path:     /{id}/update
+    defaults: { _controller: "ProductionBundle:Vendeur:update" }
+    methods:  [POST, PUT]
+
+vendeur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProductionBundle:Vendeur:delete" }
+    methods:  [POST, DELETE]

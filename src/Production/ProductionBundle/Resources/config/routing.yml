@@ -1,0 +1,42 @@
+production_workflowexecution:
+    resource: "@ProductionBundle/Resources/config/routing/workflowexecution.yml"
+    prefix:   /workflowexecution
+
+production_affectation:
+    resource: "@ProductionBundle/Resources/config/routing/affectationetapeutilisateur.yml"
+    prefix:   /affectation
+
+production_boncommandeligne:
+    resource: "@ProductionBundle/Resources/config/routing/boncommandeligne.yml"
+    prefix:   /boncommandeligne
+
+production_vendeur:
+    resource: "@ProductionBundle/Resources/config/routing/vendeur.yml"
+    prefix:   /vendeur
+
+production_clients:
+    resource: "@ProductionBundle/Resources/config/routing/clients.yml"
+    prefix:   /clients
+
+production_commande:
+    resource: "@ProductionBundle/Resources/config/routing/boncommande.yml"
+    prefix:   /commande
+
+production_workflowetape:
+    resource: "@ProductionBundle/Resources/config/routing/workflowetape.yml"
+    prefix:   /workflowetape
+
+production_produit:
+    resource: "@ProductionBundle/Resources/config/routing/parproduit.yml"
+    prefix:   /produit
+
+production_workflow:
+    resource: "@ProductionBundle/Resources/config/routing/workflow.yml"
+    prefix:   /workflow
+
+production_homepage:
+    path:     /
+    defaults: { _controller: ProductionBundle:Default:index }
+production_homepage_test:
+    path:     /test
+    defaults: { _controller: ProductionBundle:Default:test }

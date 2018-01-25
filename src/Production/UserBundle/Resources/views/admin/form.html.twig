@@ -1,0 +1,47 @@
+  <div class="form-group">
+    <label for="" class="col-sm-6 control-label">Photo</label>
+    <div class="col-sm-6">
+      <img class="myavatar col-md-4" src="{{ asset( entity.avatar)}}">
+    </div>
+  </div>
+  <div class="form-group ">
+      <div class="col-md-offset-6 col-md-6">
+  {{ form_row(form.image.file, { 'label': ' '}) }}
+          </div>
+      </div>
+  <div class="form-group ">
+      <div class="col-md-offset-6 col-md-6">
+  {{ form_row(form.username, { 'label': 'Identifiant'}) }}
+       </div>
+      </div>
+  <div class="form-group ">
+      <div class="col-md-offset-6 col-md-6">
+  {{ form_row(form.plainpassword, { 'label': 'Mot de passe'}) }}
+          </div>
+      </div>
+  <div class="form-group ">
+      <div class="col-md-offset-6 col-md-6">
+  {{ form_row(form.family_name, { 'label': 'Nom'}) }}
+      </div>
+      </div>
+  <div class="form-group ">
+      <div class="col-md-offset-6 col-md-6">
+  {{ form_row(form.first_name, { 'label': 'Prénom'}) }}
+          </div>
+      </div>
+  <div class="form-group ">
+      <div class="col-md-offset-6 col-md-6">
+  {{ form_row(form.email, { 'label': 'Adresse email'}) }}
+          </div>
+      </div>
+  <div class="form-group ">
+      <div class="col-md-offset-6 col-md-6">
+  {{ form_row(form.tel, { 'label': 'Tél'}) }}
+          </div>
+      </div>
+  <div class="form-group ">
+      <div class="col-md-offset-6 col-md-6">
+  {{ form_row(form.enabled, { 'label': 'Activé'}) }}
+          </div>
+      </div>
+  {{ form_rest(form) }}

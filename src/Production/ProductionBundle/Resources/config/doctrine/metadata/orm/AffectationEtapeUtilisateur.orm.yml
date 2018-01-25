@@ -1,0 +1,48 @@
+AffectationEtapeUtilisateur:
+    type: entity
+    table: affectation_etape_utilisateur
+    indexes:
+        FK_C89DF30B77082E8B:
+            columns:
+                - id_ligne_bc
+        FK_C89DF30B6B3CA4B:
+            columns:
+                - id_user
+    uniqueConstraints:
+        UNIQ_C89DF30BC6DA34ED:
+            columns:
+                - id_etape
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        idUser:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: id_user
+        idEtape:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: id_etape
+        idLigneBc:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: id_ligne_bc
+        dateAffectation:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: date_affectation
+    lifecycleCallbacks: {  }

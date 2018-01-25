@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>WorkflowExecution list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Idlignebc</th>
+                <th>Idetape</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Commentaire</th>
+                <th>Urlpj</th>
+                <th>Idutilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('workflowexecution_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.idLigneBc }}</td>
+                <td>{{ entity.idEtape }}</td>
+                <td>{% if entity.dateDebut %}{{ entity.dateDebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if entity.dateFin %}{{ entity.dateFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.commentaire }}</td>
+                <td>{{ entity.urlPj }}</td>
+                <td>{{ entity.idUtilisateur }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('workflowexecution_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('workflowexecution_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('workflowexecution_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

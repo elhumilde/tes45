@@ -1,0 +1,320 @@
+InscriptionsDistribution:
+    type: entity
+    table: inscriptions_distribution
+    uniqueConstraints:
+        _udid:
+            columns:
+                - _udid
+    id:
+        oid:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: _oid
+            generator:
+                strategy: IDENTITY
+    fields:
+        userid:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: _userid
+        udid:
+            type: string
+            nullable: true
+            length: 200
+            fixed: false
+            comment: ''
+            column: _udid
+        cfir:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+            column: _cfir
+        formeJuridique:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _forme_juridique
+        dateCreationSoc:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _date_creation_soc
+        capital:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _capital
+        identifiantFiscal:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _identifiant_fiscal
+        patente:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _patente
+        rubrique:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _rubrique
+        rubriqueTlc:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _rubrique_tlc
+        prestations:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _prestations
+        produits:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _produits
+        raisonSociale:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _raison_sociale
+        adresseSoc:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _adresse_soc
+        localiteSoc:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: _localite_soc
+        telephoneSoc:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _telephone_soc
+        faxSoc:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _fax_soc
+        emailSoc:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _email_soc
+        registreCommerce:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _registre_commerce
+        villeRegistreCommerce:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            comment: ''
+            column: _ville_registre_commerce
+        type:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _type
+        effectif:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _effectif
+        logo:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _logo
+        quartier:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _quartier
+        codePostale:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _code_postale
+        telephone2Soc:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _telephone2_soc
+        siteWeb:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _site_web
+        longitude:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _longitude
+        latitude:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _latitude
+        objet:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _objet
+        dateIns:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: CURRENT_TIMESTAMP
+            column: _date_ins
+        dateTrait:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: _date_trait
+        comments:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: _comments
+        statut:
+            type: string
+            nullable: true
+            length: 20
+            fixed: true
+            comment: ''
+            column: _statut
+        etat:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+        dateMiseEnligne:
+            type: datetime
+            nullable: true
+            comment: ''
+            column: _date_mise_enligne
+        travers:
+            type: array
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        numeroVoie:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: numero_voie
+        codevoie:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        complementVoie:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+            column: complement_voie
+        cadre:
+            type: string
+            nullable: true
+            length: 22
+            fixed: false
+            comment: ''
+        export:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        zonexport:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        import:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        zoneimport:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

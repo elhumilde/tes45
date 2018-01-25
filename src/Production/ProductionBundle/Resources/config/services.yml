@@ -1,0 +1,6 @@
+services:
+      ben.twig.extension.config:
+        class: Production\ProductionBundle\Twig\ConfigExtension
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+        - { name: twig.extension }

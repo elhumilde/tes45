@@ -1,0 +1,235 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+<div id="page-title">
+    <h2>Liste Des lignes <span class="text-success"> En attente</span> </h2>
+</div>
+
+    {#<a href="{{ path('boncommandeligne') }}" class="btn btn-success">En attente </a> <a href="{{ path('boncommandeligne_affecter') }}" class="btn btn-success">Affecté</a>#}
+<div class="row">
+
+    <div class=" col-md-6">
+        <div>   <label for="bc" class="required">Date prévu réunion client </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{% if entit.welcomes %}{% if entit.welcomes.dateReunion %}{{ entit.welcomes.dateReunion|date('d-m-Y') }} {% endif %}{% endif %}" readonly=""></div>
+    </div>
+
+    <div class=" col-md-6">
+        <div>   <label for="bc" class="required">Date prévu mise enligne </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{% if entit.welcomes %}{% if entit.welcomes.dateMise %} {{ entit.welcomes.dateMise|date('d-m-Y') }}{% endif %} {% endif %}" readonly=""></div>
+    </div>
+
+    <div class=" col-md-8" style="margin-top: 20px;">
+            <div>
+                    <label class="col-sm-3 control-label">Commentaire</label>
+                    <div class="col-sm-6">
+                        <textarea id="one_text" name="" rows="5" cols="50" class="form-control textarea-counter" readonly> {% if entit.welcomes %}{% if entit.welcomes.commentaire %} {{ entit.welcomes.commentaire }}{% endif %}{% endif %} </textarea>
+                        <div class="character-remaining clear input-description">125 characters left</div>
+                    </div>
+            </div>
+
+    </div>
+
+</div>
+    <div class="example-box-wrapper">
+        <div class="row">
+
+            <div class="col-md-2">
+                {% set totalPrice =0 %}
+                {% for enti in entit.ligne %}
+                    {% set totalPrice = totalPrice + enti.produit.idWorkflow|count(enti.id) %}
+
+                {% endfor %}
+                <a href="#" title="Example tile shortcut" class="tile-box tile-box-alt btn-danger">
+                    <div class="tile-header">
+                        Etat d'affectation
+                    </div>
+                    <div class="tile-content-wrapper">
+                        <div class="chart-alt-10 easyPieChart" data-percent="{{ totalPrice /entit.ligne|length}}" style="width: 100px; height: 100px; line-height: 100px;"><span>54</span>%<canvas width="100" height="100"></canvas></div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-2">
+                <a href="#" title="Example tile shortcut" class="tile-box tile-box-alt btn-success">
+                    {% set totalPrices =0 %}
+                    {% for enti in entit.ligne %}
+                        {% set totalPrices = totalPrices + enti.produit.idWorkflow|countFin(enti.id) %}
+
+                    {% endfor %}
+                    <div class="tile-header">
+                        Etat d cloture
+                    </div>
+                    <div class="tile-content-wrapper">
+                        <div class="chart-alt-10 easyPieChart" data-percent="{{ totalPrices /entit.ligne|length}}" style="width: 100px; height: 100px; line-height: 100px;"><span>42</span>%<canvas width="100" height="100"></canvas></div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <form action="{{ path('boncommandeligne_production') }}"  method="post" >
+        <div class="row">
+            <div class="panel">
+                <div class="panel-body">
+                    <h3 class="title-hero">
+                        Liste Des lignes
+                    </h3>
+                    <div class="example-box-wrapper">
+                        <table id="datatable-responsive" class="table table-striped table-bordered responsive no-wrap" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th><input id="checkall" type="checkbox" value=""></th>
+                                <th>Numéro bc</th>
+                                <th>Produit</th>
+                                <th>Montant ht produit</th>
+                                <th>Client </th>
+                                <th>Etat d'affectation</th>
+                                <th>Cloturee</th>
+
+                                <th>Etapes</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Numéro bc</th>
+                                <th>Produit</th>
+                                <th>Montant ht</th>
+                                <th>Client</th>
+                                <th>Etat d'affectation</th>
+                                <th>Cloturee</th>
+
+                                <th>Etapes</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            {% for entity in entities %}
+                                <tr>
+                                    <td ><input type="checkbox" name="users[]" value="{{ entity.id }}|{{ entity.produit.customer.id }}"></td>
+                                    <td>{{ entity.commande.numBc }}</td>
+                                    <td>{{ entity.produit.titre }}</td>
+                                    <td class="text-warning">{{ entity.montantHt }}  </td>
+                                    <td>{{ entity.commande.customer.client }}</td>
+                                    <td><div class="row demo-margin">
+                                            <div class="col-md-3">
+                                                <div class="text-center font-gray-dark pad5B text-transform-upr font-size-11">Affectation</div>
+                                                <div class="chart-alt-2 easyPieChart" data-percent="{{ entity.produit.idWorkflow|count(entity.id) }}" style="width: 50px; height: 50px; line-height: 50px;"><span>{{ entity.produit.idWorkflow|count(entity.id) }}</span>%<canvas width="50" height="50"></canvas></div>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td ><div class="col-md-3">
+                                            <div class="text-center font-gray-dark pad5B text-transform-upr font-size-11">Cloture</div>
+                                            <div class="chart-alt-2 easyPieChart" data-percent="{{ entity.produit.idWorkflow|countFin(entity.id) }}" data-bar-color="#2980b9" style="width: 50px; height: 50px; line-height: 50px;"><span>{{ entity.produit.idWorkflow|countFin(entity.id) }}</span>%<canvas width="50" height="50"></canvas></div>
+                                        </div> </td>
+
+                                    <td><a class="btn btn-link" href="{{ path('boncommandeligne_show', { 'id': entity.id }) }}">Etapes</a></td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel panel-warning hidden-print">
+            <div class="panel-heading"><h2>Action :</h2></div>
+
+
+
+            {#<input type="hidden" value="{{ entity.udid }}" name="udid">#}
+            <span class="text-success"><h3>Affectaion : </h3></span>
+
+            <label class="btn btn-default"><input type="checkbox" name="checkbox_production" id="PRODUCTION"  style="vertical-align: top;" disabled="disabled" >Production</label>
+            </br>
+            </br>
+            </br>
+            <span class="text-success"><h3><i class="fa fa-briefcase"></i>Collaborateur :</h3></span>
+
+
+            <div   id="autoUpdate5"  style="display: none">
+                <p>Service : <span class="text-success">Production</span></p>
+                {% if production is defined %}
+                    <input type="hidden" name="count_production" value="{{ production|length }}">
+                    {% for entit in production  %}
+
+                        <div class="one_element">
+                            <div class="rs_one_title">
+                                <label class="btn btn-default"><input type="checkbox" name="checkbox_utilisateur_prod{{ loop.index }}" id="PRODUCTION" style="vertical-align: top;"   > {{ entit.fullName }}</label>
+
+
+                            </div>
+                            <input type="hidden" name="utilisateur_prod{{ loop.index }}" value="{{ entit.id }}">
+                            <div class="one_element_footer">
+
+                                <textarea style="display: block; margin: 0px 125px 0px 0px; width: 564px; height: 60px;" name="cmt_prod{{ loop.index }}" id="adresse_raison"  placeholder="votre commentaire"></textarea>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            </div>
+            <hr>
+            <center>
+                <input type="submit" name="valider" value="Valider les affectations" class="btn btn-success btn-gradient" disabled="disabled">
+            </center>
+
+        </div>
+
+    </form>
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable-bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/widgets/datatable/datatable-responsive.js') }}"></script>
+
+    <script type="text/javascript">
+
+
+
+
+        $(document).ready(function () {
+            $('#PRODUCTION').change(function () {
+                if (!this.checked)
+                //  ^
+                    $('#autoUpdate5').fadeOut('slow');
+                else
+                    $('#autoUpdate5').fadeIn('slow');
+            });
+        });
+
+        $("#checkall").click(function(){
+            if($("#checkall").prop("checked")) $("td input:checkbox").prop("checked",true);
+            else $(" td input:checkbox").prop("checked",false);
+        });
+        function getCheckedRows () {
+            var users = [];
+            dataContainer.find('input:checkbox:checked').each(function() {
+                users.push($(this).val());
+            });
+            return users.join(',');
+        }
+        /* Datatables responsive */
+
+
+
+        $(document).ready(function() {
+            $('#datatable-responsive').DataTable( {
+                responsive: true
+            } );
+        } );
+
+        $(document).ready(function() {
+            $('.dataTables_filter input').attr("placeholder", "Search...");
+        });
+
+    </script>
+
+{% endblock %}
+
+
+

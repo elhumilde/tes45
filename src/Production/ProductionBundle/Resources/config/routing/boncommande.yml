@@ -1,0 +1,86 @@
+commande:
+    path:     /
+    defaults: { _controller: "ProductionBundle:BonCommande:index" }
+
+commande_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProductionBundle:BonCommande:show" }
+
+commande_produit:
+    path:     /{id}/produit
+    defaults: { _controller: "ProductionBundle:BonCommande:produit" }
+
+commande_new:
+    path:     /new
+    defaults: { _controller: "ProductionBundle:BonCommande:new" }
+
+commande_wf:
+    path:     /wf/{id}
+    defaults: { _controller: "ProductionBundle:BonCommande:wf" }
+
+commande_wc:
+    path:     /wc
+    defaults: { _controller: "ProductionBundle:BonCommande:wc" }
+
+commande_recherche:
+    path:     /recherche
+    defaults: { _controller: "ProductionBundle:BonCommande:recherche" }
+
+commande_recherched:
+    path:     /recherched
+    defaults: { _controller: "ProductionBundle:BonCommande:recherched" }
+
+commande_create:
+    path:     /create
+    defaults: { _controller: "ProductionBundle:BonCommande:create" }
+    methods:  POST
+
+commande_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProductionBundle:BonCommande:edit" }
+
+commande_update:
+    path:     /{id}/update
+    defaults: { _controller: "ProductionBundle:BonCommande:update" }
+    methods:  [POST, PUT]
+
+commande_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProductionBundle:BonCommande:delete" }
+    methods:  [POST, DELETE]
+
+commande_test:
+    path:     /test
+    defaults: { _controller: "ProductionBundle:BonCommande:test" }
+
+commande_form_text:
+    path:     /text
+    defaults: { _controller: "ProductionBundle:BonCommande:text" }
+
+commande_form_enligne:
+    path:     /enligne
+    defaults: { _controller: "ProductionBundle:BonCommande:enligne" }
+
+commande_form_reunion:
+    path:     /reunion
+    defaults: { _controller: "ProductionBundle:BonCommande:reunion" }
+
+commande_form_valider:
+    path:     /valider
+    defaults: { _controller: "ProductionBundle:BonCommande:valider" }
+
+commande_form_non:
+    path:     /non
+    defaults: { _controller: "ProductionBundle:BonCommande:non" }
+
+commande_valider:
+    path:     /valider-soft
+    defaults: { _controller: "ProductionBundle:BonCommande:validersoft" }
+
+commande_non:
+    path:     /non-soft
+    defaults: { _controller: "ProductionBundle:BonCommande:nonsoft" }
+
+commande_nond:
+    path:     /non-softd
+    defaults: { _controller: "ProductionBundle:BonCommande:nonsoftd" }

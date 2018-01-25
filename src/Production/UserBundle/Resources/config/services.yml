@@ -1,0 +1,7 @@
+services:
+
+    ben.stats_handler:
+        class: Production\UserBundle\Stats\StatsHandler
+        arguments: ["@doctrine.orm.entity_manager"]
+
+

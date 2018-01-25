@@ -1,0 +1,38 @@
+Distribution:
+    type: entity
+    table: distribution
+    id:
+        regId:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            column: reg_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        regDate:
+            type: datetime
+            nullable: false
+            comment: ''
+            column: reg_date
+        fullname:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        email:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        password:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

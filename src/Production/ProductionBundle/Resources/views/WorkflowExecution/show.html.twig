@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>WorkflowExecution</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Idlignebc</th>
+                <td>{{ entity.idLigneBc }}</td>
+            </tr>
+            <tr>
+                <th>Idetape</th>
+                <td>{{ entity.idEtape }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{{ entity.dateDebut|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{{ entity.dateFin|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ entity.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>Urlpj</th>
+                <td>{{ entity.urlPj }}</td>
+            </tr>
+            <tr>
+                <th>Idutilisateur</th>
+                <td>{{ entity.idUtilisateur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('workflowexecution') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('workflowexecution_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

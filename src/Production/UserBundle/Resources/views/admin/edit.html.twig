@@ -1,0 +1,41 @@
+{% extends "::base.html.twig" %}
+{% block title %}
+Tableau de bord | {{ parent() }}
+{% endblock %}
+    {% block stylesheet %}
+        <link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/select2.css') }}" rel="stylesheet">
+    {% endblock %}
+{% block body %}
+<div class="col-md-12">      
+	<h3><span class="glyphicon glyphicon-user"></span> Mise à jour d'un utilisateur</h3>
+	<form class="form-horizontal col-md-8" action="{{ path('ben_update_user', {id: entity.id})}}" method="POST" role="form" {{ form_enctype(form) }}>
+		{% include "UserBundle:admin:form.html.twig" %}
+  
+  <div class="form-group">
+      <div class="col-sm-offset-6 col-sm-6">
+        <button type="submit" name="subvalider" class="btn btn-primary"><span class="glyphicon glyphicon-edit"></span>  Mettre à jour</button>
+      </div>
+    </div>
+
+	</form> 
+</div>
+{% endblock body %}
+
+ {% block javascripts %}
+     <script src="{{ asset('js/jquery.min.js') }}"></script>
+     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+     <script src="{{ asset('js/jquery.cookie.js') }}"></script>
+     <script src="{{ asset('js/select2.min.js') }}"></script>
+     <script src="{{ asset('js/application.js') }}"></script>
+
+<script>
+
+
+
+    (function($) {
+    })(jQuery);
+</script>
+{% endblock %}

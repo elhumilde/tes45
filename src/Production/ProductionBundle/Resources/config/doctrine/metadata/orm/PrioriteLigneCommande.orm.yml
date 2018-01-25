@@ -1,0 +1,25 @@
+PrioriteLigneCommande:
+    type: entity
+    table: priorite_ligne_commande
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        idLigneCommande:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: id_ligne_commande
+        ordre:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+    lifecycleCallbacks: {  }

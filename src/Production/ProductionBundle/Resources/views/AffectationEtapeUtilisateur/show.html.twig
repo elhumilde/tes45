@@ -1,0 +1,74 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+<div id="page-title">
+    <h2>Processus production d'un produit de<span class="text-success"> {{ entity.bncommande.produit.titre }} </span></h2>
+</div>
+
+
+    <div class="row">
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Numéro BC </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entity.bncommande.commande.numBc }}" readonly></div>
+        </div>
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Produit </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entity.bncommande.produit.titre }}" readonly></div>
+        </div>
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Client </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entity.bncommande.commande.customer.client }}" readonly></div>
+        </div>
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Montant ht produit </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entity.bncommande.montantHt }} " readonly></div>
+        </div>
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Vendeur</label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{{ entity.bncommande.commande.vendeur.nom }} {{ entity.bncommande.commande.vendeur.prenom }} " readonly></div>
+        </div>
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Date arrivée bon commande</label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{% if entity.bncommande.commande.dateBc %}{{ entity.bncommande.commande.dateBc|date('d-m-Y') }}{% endif %} " readonly></div>
+        </div>
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Date prevue reunion client </label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{% if entity.bncommande.commande.datePrevueReunionClient|date('d-m-Y') %}{{ entity.bncommande.commande.datePrevueReunionClient|date('d-m-Y') }}{% endif %} " readonly></div>
+        </div>
+        <div class=" col-md-6">
+            <div>   <label for="bc" class="required">Date affectation</label><input type="text" id="bc" name="bc" required="required" class="form-control has-feedback-left" value="{% if entity.dateAffectation %}{{ entity.dateAffectation|date('d-m-Y H:i') }}{% endif %} " readonly></div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+{% if entity.bncommande.produit.id==4 %}
+    {% include 'siteconnect.html.twig' %}
+{% endif %}
+
+{% if entity.bncommande.produit.id==3 %}
+        {% include 'module.html.twig' %}
+{% endif %}
+
+    <script type="text/javascript" src="{{ asset('assets/widgets/tabs-ui/tabs.js')}}"></script>
+    <script type="text/javascript">
+        /* jQuery UI Tabs */
+
+        $(function() { "use strict";
+            $(".tabs").tabs();
+        });
+
+        $(function() { "use strict";
+            $(".tabs-hover").tabs({
+                event: "mouseover"
+            });
+        });
+    </script>
+
+    <!-- Boostrap Tabs -->
+
+    <script type="text/javascript" src="{{ asset('assets/widgets/tabs/tabs.js')}}"></script>
+
+    <!-- Tabdrop Responsive -->
+
+    <script type="text/javascript" src="{{ asset('assets/widgets/tabs/tabs-responsive.js')}}"></script>
+    <script type="text/javascript">
+        /* Responsive tabs */
+        $(function() { "use strict";
+            $('.nav-responsive').tabdrop();
+        });
+    </script>
+{% endblock %}

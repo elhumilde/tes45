@@ -1,0 +1,49 @@
+WorkflowEtape:
+    type: entity
+    table: workflow_etape
+    indexes:
+        FK_991103E9351E7483:
+            columns:
+                - id_workflow
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        titre:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        description:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+            comment: ''
+        idWorkflow:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: id_workflow
+        idEtapePrecedente:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: id_etape_precedente
+        tempsPrevu:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+            column: temps_prevu
+    lifecycleCallbacks: {  }
